@@ -2,6 +2,8 @@
 
 A lightweight, modular, and powerful JavaScript animation library built for developers who want precise control over UI animations without the bloat of large frameworks.
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 
 
 ## ✨ Features

@@ -4,15 +4,14 @@
   "main": "index.js",
   "type": "module",
   "description": "Custom JavaScript animation library with modular effects",
- "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "test": "jest --config=jest.config.cjs",
-  "coverage": "jest --coverage"
-}
-
-,
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "jest --config=jest.config.cjs",
+    "coverage": "jest --coverage"
+  },
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",

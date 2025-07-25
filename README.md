@@ -2,13 +2,9 @@
 
 A lightweight, modular, and powerful JavaScript animation library built for developers who want precise control over UI animations without the bloat of large frameworks.
 
-![npm](https://img.shields.io/npm/v/anim8-core)
-![GitHub](https://img.shields.io/github/license/arsh-kodr/anim8-core)
-![GitHub repo size](https://img.shields.io/github/repo-size/arsh-kodr/anim8-core)
+![GitHub](https://img.shields.io/github/license/arsh-kodr/anim8-core?color=green)
+![Repo Size](https://img.shields.io/github/repo-size/arsh-kodr/anim8-core)
 ![GitHub stars](https://img.shields.io/github/stars/arsh-kodr/anim8-core?style=social)
-
-
-
 
 
 ## ✨ Features
@@ -34,6 +30,13 @@ npm install anim8-core
 git clone https://github.com/arsh-kodr/anim8-core.git
 cd anim8-core
 npm install
+
+### CDN (via jsDelivr or unpkg)
+
+Add to HTML:
+```html
+<script src="https://unpkg.com/anim8-core/dist/anim9.umd.js"></script>
+
 ```
 
 ## 🚀 Quick Start
@@ -56,8 +59,10 @@ fadeIn(element, {
 // Slide in from the left
 slideIn(element, {
   direction: 'left',
-  duration: 600
+  duration: 600,
+  distance: '100px'
 });
+
 
 // Rotate continuously
 rotate(element, {

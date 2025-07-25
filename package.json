@@ -16,9 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/anim8-core.git"
+    "url": "https://github.com/arsh-kodr/anim8-core.git"
   },
-  "author": "Arsh Kodr",
+  "homepage": "https://github.com/arsh-kodr/anim8-core#readme",
+  "author": "Arsh Kodr <youremail@example.com>",
   "license": "MIT",
   "keywords": [
     "animation",

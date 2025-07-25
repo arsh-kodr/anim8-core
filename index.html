@@ -149,6 +149,7 @@
       typewriterPulse
     } from "./src/index.js";
 
+    // Make available globally for button clicks
     window.fadeIn = fadeIn;
     window.slideIn = slideIn;
     window.rotate = rotate;
@@ -157,14 +158,17 @@
     window.typewriterPulse = typewriterPulse;
 
     window.addEventListener("DOMContentLoaded", () => {
-      // Scroll animation
+      // Scroll reveal animation
       scrollReveal(".scroll-me", {
         delayBetween: 300,
         duration: 1000,
-        distance: 80
+        distance: 80,
+        once: false,
+        reverseEffect: "slideOut", // 👈 custom reverse animation
+        reverseDirection: "left",  // 👈 slideOut to left
       });
 
-      // Typewriter + Pulse
+      // Typewriter effect
       typewriterPulse(".typewriter-text", {
         delay: 300,
         pulseScale: 1.2,

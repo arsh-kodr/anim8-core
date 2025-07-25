@@ -1,38 +1,32 @@
-// src/effects/scrollReveal.js
-import { animate } from '../core/animate.js';
-import { easeOutCubic } from '../easings/easeOutCubic.js';
-
 export function scrollReveal(selector, options = {}) {
   const elements = document.querySelectorAll(selector);
-  if (!elements.length) return;
-
   const {
+    once = true,
+    delayBetween = 0,
     duration = 800,
-    easing = easeOutCubic,
-    delayBetween = 200, // Add delay between items
-    distance = 50
+    distance = 50,
+    reverseEffect = "slideOut", // ← new option (name of reverse anim)
   } = options;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
+      const el = entry.target;
+
       if (entry.isIntersecting) {
-        const el = entry.target;
-        animate(el, {
-          opacity: [0, 1],
-          transform: [`translateY(${distance}px)`, 'translateY(0px)']
-        }, {
-          duration,
-          easing,
-          delay: index * delayBetween // Sequence based on index
-        });
-        observer.unobserve(el); // Only once
+        el.style.opacity = 1;
+        el.style.transform = "translateY(0)";
+        el.style.transition = `all ${duration}ms ease ${index * delayBetween}ms`;
+      } else if (!once) {
+        el.style.opacity = 0;
+        el.style.transition = `all ${duration}ms ease`;
+        if (reverseEffect === "slideOut") {
+          el.style.transform = `translateY(${distance}px)`;
+        }
       }
     });
-  }, {
-    threshold: 0.1
   });
 
-  elements.forEach(el => {
+  elements.forEach((el) => {
     el.style.opacity = 0;
     el.style.transform = `translateY(${distance}px)`;
     observer.observe(el);

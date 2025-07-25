@@ -2,8 +2,11 @@
 
 A lightweight, modular, and powerful JavaScript animation library built for developers who want precise control over UI animations without the bloat of large frameworks.
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![npm](https://img.shields.io/npm/v/anim8-core) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/anim8-core)
+![npm](https://img.shields.io/npm/v/anim8-core)
+![GitHub](https://img.shields.io/github/license/arsh-kodr/anim8-core)
+![GitHub repo size](https://img.shields.io/github/repo-size/arsh-kodr/anim8-core)
+![GitHub stars](https://img.shields.io/github/stars/arsh-kodr/anim8-core?style=social)
+
 
 
 

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>anim9-core Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 0;
+      background: #1f1f1f;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .box {
+      width: 150px;
+      height: 150px;
+      background: hotpink;
+      opacity: 0;
+      border-radius: 20px;
+      margin: 20px;
+      transition: all 0.2s;
+    }
+
+    .scroll-me {
+      background: dodgerblue;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      border: none;
+      background: white;
+      color: #1f1f1f;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: hotpink;
+      color: white;
+    }
+
+    .scroll-section {
+      margin-top: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .typewriter-text {
+      font-size: 24px;
+      margin-top: 30px;
+      min-height: 30px;
+    }
+
+    /* === Gooey Nav Styles === */
+    .gooey-nav {
+      position: fixed;
+      bottom: 30px;
+      display: flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 30px;
+      border-radius: 50px;
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      filter: url(#goo);
+    }
+
+    .gooey-nav a {
+      width: 20px;
+      height: 20px;
+      background: hotpink;
+      border-radius: 50%;
+      display: inline-block;
+      transform: scale(1);
+      transition: transform 0.3s;
+    }
+
+    .gooey-nav a:hover {
+      transform: scale(1.8);
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎉 anim9-core Demo</h1>
+
+  <!-- Static Demo Box -->
+  <div class="box" id="mainBox"></div>
+
+  <!-- Animation Control Buttons -->
+  <div>
+    <button onclick="fadeIn('#mainBox')">Fade In</button>
+    <button onclick="slideIn('#mainBox', 'left', 300)">Slide In Left</button>
+    <button onclick="rotate('#mainBox')">Rotate</button>
+    <button onclick="rotateScale('#mainBox')">Rotate + Scale</button>
+  </div>
+
+  <!-- Typewriter Entry -->
+  <h2 class="typewriter-text">Welcome to anim9-core</h2>
+
+  <!-- Scroll Reveal Section -->
+  <div class="scroll-section">
+    <div class="box scroll-me"></div>
+    <div class="box scroll-me"></div>
+    <div class="box scroll-me"></div>
+  </div>
+
+  <!-- Gooey Navigation -->
+  <nav class="gooey-nav">
+    <a href="#mainBox"></a>
+    <a href="#"></a>
+    <a href="#"></a>
+    <a href="#"></a>
+  </nav>
+
+  <!-- SVG filter for gooey effect -->
+  <svg width="0" height="0">
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  
+                0 1 0 0 0  
+                0 0 1 0 0  
+                0 0 0 20 -10" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+    </filter>
+  </svg>
+
+  <!-- JavaScript Animations -->
+  <script type="module">
+    import {
+      fadeIn,
+      slideIn,
+      rotate,
+      rotateScale,
+      scrollReveal,
+      typewriterPulse
+    } from "./src/index.js";
+
+    window.fadeIn = fadeIn;
+    window.slideIn = slideIn;
+    window.rotate = rotate;
+    window.rotateScale = rotateScale;
+    window.scrollReveal = scrollReveal;
+    window.typewriterPulse = typewriterPulse;
+
+    window.addEventListener("DOMContentLoaded", () => {
+      // Scroll animation
+      scrollReveal(".scroll-me", {
+        delayBetween: 300,
+        duration: 1000,
+        distance: 80
+      });
+
+      // Typewriter + Pulse
+      typewriterPulse(".typewriter-text", {
+        delay: 300,
+        pulseScale: 1.2,
+        letterDelay: 80,
+        pulseDuration: 120
+      });
+    });
+  </script>
+</body>
+</html>

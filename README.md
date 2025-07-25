@@ -3,6 +3,8 @@
 A lightweight, modular, and powerful JavaScript animation library built for developers who want precise control over UI animations without the bloat of large frameworks.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![npm](https://img.shields.io/npm/v/anim8-core) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/anim8-core)
+
 
 
 
@@ -238,7 +240,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙋‍♂️ Support
 
-- 📧 Email: [your-email@example.com](mailto:your-email@example.com)
+- 📧 Email: [arshrai2364@gmail.com](mailto:arshrai2364@gmail.com)
 - 🐛 Issues: [GitHub Issues](https://github.com/arsh-kodr/anim8-core/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/arsh-kodr/anim8-core/discussions)
 

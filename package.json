@@ -1,17 +1,35 @@
 {
   "name": "anim8-core",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
+  "version": "1.0.1",
   "description": "Custom JavaScript animation library with modular effects",
-  "license": "MIT",
+  "main": "dist/anim9.umd.js",
+  "module": "dist/anim9.es.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest --config=jest.config.cjs",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/anim8-core.git"
+  },
+  "author": "Arsh Kodr",
+  "license": "MIT",
+  "keywords": [
+    "animation",
+    "javascript",
+    "library",
+    "effects",
+    "scroll",
+    "fade",
+    "slide",
+    "modular"
+  ],
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",

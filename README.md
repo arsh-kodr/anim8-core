@@ -1,43 +1,69 @@
-# 🎬 anim8-core
 
-A lightweight, modular, and powerful JavaScript animation library built for developers who want precise control over UI animations without the bloat of large frameworks.
+# 🎞️ anim8-core
 
-![GitHub](https://img.shields.io/github/license/arsh-kodr/anim8-core?color=green)
-![Repo Size](https://img.shields.io/github/repo-size/arsh-kodr/anim8-core)
-![GitHub stars](https://img.shields.io/github/stars/arsh-kodr/anim8-core?style=social)
+> A lightweight JavaScript animation library with built-in effects like `fadeIn`, `slideIn`, `rotate`, `scrollReveal`, `gooveyNavigation`, `typewriterPulse`, and more.
 
+🔧 Built for simplicity, no dependencies — just plug & animate.
 
-## ✨ Features
+---
 
-- 🚀 **Zero dependencies** - Pure JavaScript, no external libraries
-- ⚡ **High performance** - Built with `requestAnimationFrame` for smooth 60fps animations
-- 🧩 **Modular & tree-shakable** - Import only what you need
-- 🎯 **Custom easing functions** - Built-in easing curves for natural motion
-- 🧪 **Unit tested** - Comprehensive test coverage with Jest + JSDOM
-- 📱 **Mobile-friendly** - Optimized for touch devices and responsive design
-- 🌍 **Modern browser support** - Works across all major browsers
-- 🔧 **Developer-friendly** - Clean API with TypeScript-like parameter options
+## 🚀 Installation
 
-## 📦 Installation
+### 📦 NPM (For bundlers like Vite, Webpack, etc.)
 
-### NPM
 ```bash
 npm install anim8-core
 ```
 
-### Manual Installation
-```bash
-git clone https://github.com/arsh-kodr/anim8-core.git
-cd anim8-core
-npm install
+```js
+// ESM Import
+import * as anim8 from 'anim8-core';
 
-### CDN (via jsDelivr or unpkg)
-
-Add to HTML:
-```html
-<script src="https://unpkg.com/anim8-core/dist/anim9.umd.js"></script>
-
+// Usage
+anim8.fadeIn(document.querySelector('.box'), {
+  duration: 800,
+  easing: 'easeOutQuad',
+});
 ```
+---
+
+### 🌐 CDN (Browser UMD)
+
+```html
+<!-- Add script via unpkg CDN -->
+<script src="https://unpkg.com/anim8-core/dist/anim8.umd.js"></script>
+
+<div class="box">Hello Animation</div>
+
+<script>
+  // Use window.anim8Core in the browser
+  window.anim8Core.fadeIn(document.querySelector('.box'), {
+    duration: 800,
+    easing: 'easeOutQuad',
+  });
+</script>
+```
+
+---
+
+## ✨ Animations Available
+
+| Function            | Description                              |
+|---------------------|------------------------------------------|
+| `fadeIn(el)`        | Smooth fade-in effect                    |
+| `slideIn(el, dir)`  | Slide in from `left`, `right`, etc.      |
+| `slideOut(el)`      | Slide out effect                         |
+| `rotate(el)`        | Rotate element                           |
+| `rotateScale(el)`   | Rotate + scale                           |
+| `depthZoom(el)`     | Zoom with depth illusion                 |
+| `blurIn(el)`        | Blur-in reveal                           |
+| `scrollReveal(el)`  | Animate when element enters viewport     |
+| `scrollTrigger(el)` | Scroll-based trigger                     |
+| `gooveyNav(el)`     | Gooey effect for navigation              |
+| `typewriterPulse(el)` | Typewriter + pulse effect              |
+| `stagger(el)`       | Stagger animations                       |
+
+---
 
 ## 🚀 Quick Start
 
@@ -63,7 +89,6 @@ slideIn(element, {
   distance: '100px'
 });
 
-
 // Rotate continuously
 rotate(element, {
   speed: 2,
@@ -71,17 +96,7 @@ rotate(element, {
 });
 ```
 
-## 🎨 Available Animations
-
-| Animation | Description | Options |
-|-----------|-------------|---------|
-| `fadeIn` | Smoothly fades element into view | `duration`, `delay`, `easing` |
-| `slideIn` | Slides element from specified direction | `direction`, `duration`, `delay`, `easing` |
-| `rotate` | Rotates element with configurable speed | `speed`, `duration`, `easing` |
-| `rotateScale` | Combines rotation with scaling effect | `rotation`, `scale`, `duration` |
-| `scrollReveal` | Triggers animation when element enters viewport | `threshold`, `duration`, `easing` |
-| `typewriterPulse` | Types text with pulsing cursor effect | `speed`, `cursor`, `loop` |
-| `gooeyNav` | Animated gooey navigation toggle | `morphDuration`, `color` |
+---
 
 ## ⚙️ Configuration Options
 
@@ -104,6 +119,8 @@ Most animations accept these common parameters:
 - `easeInExpo`, `easeOutExpo`, `easeInOutExpo`
 - `easeInBounce`, `easeOutBounce`, `easeInOutBounce`
 
+---
+
 ## 🏗️ Project Structure
 
 ```
@@ -120,6 +137,8 @@ anim8-core/
 ├── jest.config.cjs     # Testing configuration
 └── babel.config.json   # Babel preset configuration
 ```
+
+---
 
 ## 🔧 Creating Custom Effects
 
@@ -145,6 +164,8 @@ export { default as myCustomEffect } from './src/effects/myCustomEffect';
 import { myCustomEffect } from 'anim8-core';
 myCustomEffect(element, { duration: 800 });
 ```
+
+---
 
 ## 🧪 Testing
 
@@ -176,19 +197,23 @@ test('fadeIn animation sets opacity to 1', () => {
 });
 ```
 
+---
+
 ## 🌐 Browser Support
 
-| Browser | Support |
-|---------|---------|
-| Chrome | ✅ Latest |
-| Firefox | ✅ Latest |
-| Safari | ✅ Latest |
-| Edge | ✅ Latest |
-| Opera | ✅ Latest |
-| Android Browser | ✅ Latest |
-| iOS Safari | ✅ Latest |
+| Browser          | Support |
+|------------------|---------|
+| Chrome           | ✅ Latest |
+| Firefox          | ✅ Latest |
+| Safari           | ✅ Latest |
+| Edge             | ✅ Latest |
+| Opera            | ✅ Latest |
+| Android Browser  | ✅ Latest |
+| iOS Safari       | ✅ Latest |
 
 *Uses modern APIs like `requestAnimationFrame` for optimal performance*
+
+---
 
 ## 🚀 Development & Build
 
@@ -209,6 +234,8 @@ npm run build
 # Test the build
 npm run preview
 ```
+
+---
 
 ## 📄 API Reference
 
@@ -232,6 +259,8 @@ Slides an element into view from a specified direction.
   - `duration` (number) - Animation duration (default: 1000ms)
   - `distance` (string) - Slide distance (default: '100px')
 
+---
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
@@ -242,15 +271,21 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+---
+
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 🙋‍♂️ Support
 
 - 📧 Email: [arshrai2364@gmail.com](mailto:arshrai2364@gmail.com)
 - 🐛 Issues: [GitHub Issues](https://github.com/arsh-kodr/anim8-core/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/arsh-kodr/anim8-core/discussions)
+
+---
 
 ## 🌟 Show Your Support
 

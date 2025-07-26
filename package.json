@@ -1,6 +1,6 @@
 {
   "name": "anim8-core",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Custom JavaScript animation library with modular effects",
   "main": "dist/anim8.umd.js",
   "module": "dist/anim8.es.js",

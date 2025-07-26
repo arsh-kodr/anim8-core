@@ -1,16 +1,17 @@
-// src/core/animate.js
 export function animate(el, keyframes, options = {}) {
   const {
     duration = 1000,
-    easing = (t) => t, // linear by default
+    easing,
     delay = 0,
   } = options;
+
+  // fallback if easing is not a function
+  const easeFn = typeof easing === 'function' ? easing : (t) => t;
 
   const start = performance.now();
 
   const initialStyles = {};
   const transformKeys = ["translateX", "translateY", "scale", "rotate"];
-  const transformParts = [];
 
   for (const key in keyframes) {
     initialStyles[key] = keyframes[key][0];
@@ -21,20 +22,19 @@ export function animate(el, keyframes, options = {}) {
 
     for (const key in keyframes) {
       const [from, to] = keyframes[key];
-      const eased = easing(progress);
+      const eased = easeFn(progress);
       const current = from + (to - from) * eased;
 
       if (transformKeys.includes(key)) {
         if (key === "translateX" || key === "translateY") {
           transforms.push(`${key}(${current}px)`);
         } else if (key === "scale") {
-          transforms.push(`${key}(${current})`);
+          transforms.push(`scale(${current})`);
         } else if (key === "rotate") {
-          transforms.push(`${key}(${current}deg)`);
+          transforms.push(`rotate(${current}deg)`);
         }
       } else {
-        el.style[key] =
-          typeof current === "number" ? current.toString() : current;
+        el.style[key] = typeof current === "number" ? `${current}` : current;
       }
     }
 

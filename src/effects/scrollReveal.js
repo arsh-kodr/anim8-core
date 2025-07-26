@@ -1,34 +1,22 @@
-export function scrollReveal(selector, options = {}) {
-  const elements = document.querySelectorAll(selector);
-  const {
-    once = true,
-    delayBetween = 0,
-    duration = 800,
-    distance = 50,
-    reverseEffect = "slideOut", // ← new option (name of reverse anim)
-  } = options;
+export const scrollReveal = (elementOrSelector, options = {}) => {
+  const elements =
+    typeof elementOrSelector === "string"
+      ? document.querySelectorAll(elementOrSelector)
+      : [elementOrSelector];
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      const el = entry.target;
-
+  const observer = new IntersectionObserver((entries, observerInstance) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        el.style.opacity = 1;
-        el.style.transform = "translateY(0)";
-        el.style.transition = `all ${duration}ms ease ${index * delayBetween}ms`;
-      } else if (!once) {
-        el.style.opacity = 0;
-        el.style.transition = `all ${duration}ms ease`;
-        if (reverseEffect === "slideOut") {
-          el.style.transform = `translateY(${distance}px)`;
+        entry.target.classList.add("animate-scrollReveal");
+
+        if (options.once !== false) {
+          observerInstance.unobserve(entry.target);
         }
       }
     });
   });
 
   elements.forEach((el) => {
-    el.style.opacity = 0;
-    el.style.transform = `translateY(${distance}px)`;
     observer.observe(el);
   });
-}
+};

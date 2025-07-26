@@ -1,93 +1,60 @@
 /**
  * @jest-environment jsdom
  */
+
 import { scrollReveal } from "../src/effects/scrollReveal";
-import * as animateModule from "../src/core/animate";
 
-// Proper mock class
-class MockIntersectionObserver {
-  constructor(callback, options) {
-    this.callback = callback;
-    this.options = options;
-    this.elements = [];
-    MockIntersectionObserver.instances.push(this); // Track instances
-  }
-
-  observe = (element) => {
-    this.elements.push(element);
+describe("scrollReveal()", () => {
+  document.body.innerHTML = '<div id="test"></div>';
+  const mockObserver = {
+    observe: jest.fn(),
+    unobserve: jest.fn(),
   };
 
-  unobserve = jest.fn();
-
-  triggerIntersect(entries) {
-    this.callback(entries, this);
-  }
-
-  disconnect = jest.fn();
-}
-MockIntersectionObserver.instances = [];
-
-// Assign mock globally
-beforeAll(() => {
-  global.IntersectionObserver = MockIntersectionObserver;
-});
-
-describe("scrollReveal", () => {
-  let animateSpy;
-
   beforeEach(() => {
-    document.body.innerHTML = `
-      <div class="reveal"></div>
-      <div class="reveal"></div>
-    `;
-    animateSpy = jest.spyOn(animateModule, "animate").mockImplementation(() => {});
-    MockIntersectionObserver.instances = []; // Reset before each test
-  });
-
-  afterEach(() => {
+    global.IntersectionObserver = jest.fn(() => mockObserver);
     jest.clearAllMocks();
   });
 
-  it("initializes styles and observes elements", () => {
-    scrollReveal(".reveal");
+  it("calls animate when element becomes visible", () => {
+    const element = document.getElementById("test");
+    scrollReveal(element);
 
-    const elements = document.querySelectorAll(".reveal");
-    elements.forEach(el => {
-      expect(el.style.opacity).toBe("0");
-      expect(el.style.transform).toBe("translateY(50px)");
-    });
+    const entry = {
+      isIntersecting: true,
+      target: element,
+    };
+    const observerCallback = global.IntersectionObserver.mock.calls[0][0];
+    observerCallback([entry], mockObserver);
 
-    expect(elements.length).toBe(2);
-    expect(MockIntersectionObserver.instances[0].elements.length).toBe(2);
+    expect(element.classList.contains("animate-scrollReveal")).toBe(true);
+    expect(mockObserver.unobserve).toHaveBeenCalledWith(element);
   });
 
-  it("animates elements on intersection", () => {
-    scrollReveal(".reveal");
+  it("works with selector string input", () => {
+    scrollReveal("#test");
 
-    const elements = document.querySelectorAll(".reveal");
-    const observerInstance = MockIntersectionObserver.instances[0];
+    const entry = {
+      isIntersecting: true,
+      target: document.getElementById("test"),
+    };
+    const observerCallback = global.IntersectionObserver.mock.calls[0][0];
+    observerCallback([entry], mockObserver);
 
-    // Simulate intersection
-    observerInstance.triggerIntersect([
-      { isIntersecting: true, target: elements[0] },
-      { isIntersecting: true, target: elements[1] }
-    ]);
-
-    expect(animateSpy).toHaveBeenCalledTimes(2);
-    expect(animateSpy).toHaveBeenCalledWith(
-      elements[0],
-      { opacity: [0, 1], transform: ["translateY(50px)", "translateY(0px)"] },
-      expect.objectContaining({ delay: 0 })
-    );
-    expect(animateSpy).toHaveBeenCalledWith(
-      elements[1],
-      { opacity: [0, 1], transform: ["translateY(50px)", "translateY(0px)"] },
-      expect.objectContaining({ delay: 200 }) // default delayBetween
-    );
+    expect(entry.target.classList.contains("animate-scrollReveal")).toBe(true);
   });
 
-  it("does not break if selector matches no elements", () => {
-    expect(() => scrollReveal(".non-existent")).not.toThrow();
-    expect(animateSpy).not.toHaveBeenCalled();
+  it("does not call unobserve when once is false", () => {
+    const element = document.getElementById("test");
+    scrollReveal(element, { once: false });
+
+    const entry = {
+      isIntersecting: true,
+      target: element,
+    };
+    const observerCallback = global.IntersectionObserver.mock.calls[0][0];
+    observerCallback([entry], mockObserver);
+
+    expect(mockObserver.unobserve).not.toHaveBeenCalled();
   });
 });

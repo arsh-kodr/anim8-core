@@ -5,28 +5,41 @@
   <title>anim9-core Demo</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 50px 0;
-      background: #1f1f1f;
+      padding: 40px 0;
+      background: #121212;
       color: white;
-      overflow-x: hidden;
     }
 
     h1 {
-      margin-bottom: 20px;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      width: 100%;
+      margin-bottom: 60px;
     }
 
     .box {
-      width: 150px;
-      height: 150px;
+      width: 100%;
+      aspect-ratio: 1 / 1;
       background: hotpink;
       opacity: 0;
       border-radius: 20px;
-      margin: 20px;
-      transition: all 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      font-weight: bold;
     }
 
     .scroll-me {
@@ -34,14 +47,15 @@
     }
 
     button {
-      padding: 10px 20px;
+      padding: 10px 25px;
       font-size: 16px;
-      margin: 5px;
+      margin: 10px;
       border: none;
       background: white;
-      color: #1f1f1f;
+      color: #121212;
       border-radius: 10px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     button:hover {
@@ -49,20 +63,18 @@
       color: white;
     }
 
-    .scroll-section {
-      margin-top: 200px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .section-title {
+      font-size: 1.5rem;
+      margin: 30px 0 10px;
+      text-align: center;
     }
 
     .typewriter-text {
-      font-size: 24px;
-      margin-top: 30px;
-      min-height: 30px;
+      font-size: 1.8rem;
+      text-align: center;
+      min-height: 40px;
     }
 
-    /* === Gooey Nav Styles === */
     .gooey-nav {
       position: fixed;
       bottom: 30px;
@@ -92,40 +104,45 @@
     }
   </style>
 </head>
-
 <body>
-  <h1>🎉 anim9-core Demo</h1>
+  <h1>✨ anim9-core All Animations Demo</h1>
 
-  <!-- Static Demo Box -->
-  <div class="box" id="mainBox"></div>
-
-  <!-- Animation Control Buttons -->
+  <div class="section-title">Interactive Buttons</div>
   <div>
-    <button onclick="fadeIn('#mainBox')">Fade In</button>
-    <button onclick="slideIn('#mainBox', 'left', 300)">Slide In Left</button>
-    <button onclick="rotate('#mainBox')">Rotate</button>
-    <button onclick="rotateScale('#mainBox')">Rotate + Scale</button>
+    <button onclick="fadeIn('#fadeBox')">Fade In</button>
+    <button onclick="slideIn('#slideBox', 'left', 300)">Slide In Left</button>
+    <button onclick="rotate('#rotateBox')">Rotate</button>
+    <button onclick="rotateScale('#rotateScaleBox')">Rotate + Scale</button>
+    <button onclick="blurIn('#blurBox')">Blur In</button>
+    <button onclick="depthZoom('#depthBox')">Depth Zoom</button>
   </div>
 
-  <!-- Typewriter Entry -->
-  <h2 class="typewriter-text">Welcome to anim9-core</h2>
-
-  <!-- Scroll Reveal Section -->
-  <div class="scroll-section">
-    <div class="box scroll-me"></div>
-    <div class="box scroll-me"></div>
-    <div class="box scroll-me"></div>
+  <div class="demo-grid">
+    <div class="box" id="fadeBox">Fade</div>
+    <div class="box" id="slideBox">Slide</div>
+    <div class="box" id="rotateBox">Rotate</div>
+    <div class="box" id="rotateScaleBox">Combo</div>
+    <div class="box" id="blurBox">Blur</div>
+    <div class="box" id="depthBox">Zoom</div>
   </div>
 
-  <!-- Gooey Navigation -->
+  <div class="section-title">Typewriter Effect</div>
+  <div class="typewriter-text">Welcome to anim9-core</div>
+
+  <div class="section-title">Scroll Reveal</div>
+  <div class="demo-grid scroll-section">
+    <div class="box scroll-me">Scroll 1</div>
+    <div class="box scroll-me">Scroll 2</div>
+    <div class="box scroll-me">Scroll 3</div>
+  </div>
+
   <nav class="gooey-nav">
-    <a href="#mainBox"></a>
-    <a href="#"></a>
-    <a href="#"></a>
-    <a href="#"></a>
+    <a href="#fadeBox"></a>
+    <a href="#slideBox"></a>
+    <a href="#rotateBox"></a>
+    <a href="#rotateScaleBox"></a>
   </nav>
 
-  <!-- SVG filter for gooey effect -->
   <svg width="0" height="0">
     <filter id="goo">
       <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
@@ -138,37 +155,45 @@
     </filter>
   </svg>
 
-  <!-- JavaScript Animations -->
   <script type="module">
     import {
       fadeIn,
       slideIn,
       rotate,
       rotateScale,
+      blurIn,
+      depthZoom,
       scrollReveal,
       typewriterPulse
     } from "./src/index.js";
 
-    // Make available globally for button clicks
     window.fadeIn = fadeIn;
     window.slideIn = slideIn;
     window.rotate = rotate;
     window.rotateScale = rotateScale;
+    window.blurIn = blurIn;
+    window.depthZoom = depthZoom;
     window.scrollReveal = scrollReveal;
     window.typewriterPulse = typewriterPulse;
 
     window.addEventListener("DOMContentLoaded", () => {
-      // Scroll reveal animation
+      // Automatically trigger base animations on load
+      fadeIn("#fadeBox");
+      slideIn("#slideBox", "left", 300);
+      rotate("#rotateBox");
+      rotateScale("#rotateScaleBox");
+      blurIn("#blurBox");
+      depthZoom("#depthBox");
+
       scrollReveal(".scroll-me", {
         delayBetween: 300,
         duration: 1000,
         distance: 80,
         once: false,
-        reverseEffect: "slideOut", // 👈 custom reverse animation
-        reverseDirection: "left",  // 👈 slideOut to left
+        reverseEffect: "slideOut",
+        reverseDirection: "left",
       });
 
-      // Typewriter effect
       typewriterPulse(".typewriter-text", {
         delay: 300,
         pulseScale: 1.2,

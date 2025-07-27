@@ -1,7 +1,7 @@
 
 # 🎞️ anim8-core
 
-> A lightweight JavaScript animation library with built-in effects like `fadeIn`, `slideIn`, `rotate`, `scrollReveal`, `gooveyNavigation`, `typewriterPulse`, and more.
+> A lightweight JavaScript animation library with built-in effects like `fadeIn`, `slideIn`, `rotate`, `scrollReveal`, `gooeyNav`, `typewriterPulse`, and more.
 
 🔧 Built for simplicity, no dependencies — just plug & animate.
 
@@ -48,20 +48,20 @@ anim8.fadeIn(document.querySelector('.box'), {
 
 ## ✨ Animations Available
 
-| Function            | Description                              |
-|---------------------|------------------------------------------|
-| `fadeIn(el)`        | Smooth fade-in effect                    |
-| `slideIn(el, dir)`  | Slide in from `left`, `right`, etc.      |
-| `slideOut(el)`      | Slide out effect                         |
-| `rotate(el)`        | Rotate element                           |
-| `rotateScale(el)`   | Rotate + scale                           |
-| `depthZoom(el)`     | Zoom with depth illusion                 |
-| `blurIn(el)`        | Blur-in reveal                           |
-| `scrollReveal(el)`  | Animate when element enters viewport     |
-| `scrollTrigger(el)` | Scroll-based trigger                     |
-| `gooveyNav(el)`     | Gooey effect for navigation              |
-| `typewriterPulse(el)` | Typewriter + pulse effect              |
-| `stagger(el)`       | Stagger animations                       |
+| Function               | Description                              |
+|------------------------|------------------------------------------|
+| `fadeIn(el)`           | Smooth fade-in effect                    |
+| `slideIn(el, dir)`     | Slide in from `left`, `right`, etc.      |
+| `slideOut(el)`         | Slide out effect                         |
+| `rotate(el)`           | Rotate element                           |
+| `rotateScale(el)`      | Rotate + scale                           |
+| `depthZoom(el)`        | Zoom with depth illusion                 |
+| `blurIn(el)`           | Blur-in reveal                           |
+| `scrollReveal(el)`     | Animate when element enters viewport     |
+| `scrollTrigger(el)`    | Scroll-based trigger                     |
+| `gooeyNav(el)`         | Gooey effect for navigation              |
+| `typewriterPulse(el)`  | Typewriter + pulse effect                |
+| `stagger(el)`          | Stagger animations                       |
 
 ---
 
@@ -148,7 +148,7 @@ Extend the library with your own animations:
 ```javascript
 export default function myCustomEffect(element, options = {}) {
   const { duration = 1000, easing = 'easeOutQuad' } = options;
-  
+
   // Your custom animation logic here
   // Use requestAnimationFrame for smooth performance
 }
@@ -190,9 +190,9 @@ import { fadeIn } from '../src/effects/fade.js';
 test('fadeIn animation sets opacity to 1', () => {
   const element = document.createElement('div');
   document.body.appendChild(element);
-  
+
   fadeIn(element, { duration: 0 });
-  
+
   expect(element.style.opacity).toBe('1');
 });
 ```

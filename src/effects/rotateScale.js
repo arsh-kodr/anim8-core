@@ -1,9 +1,11 @@
 // src/effects/rotateScale.js
+
 import { animate } from '../core/animate.js';
 import { easeOutExpo } from '../easings/easeOutExpo.js';
+import { resolveElement } from '../utils/resolveElement.js';
 
-export function rotateScale(selector) {
-  const el = document.querySelector(selector);
+export function rotateScale(target) {
+  const el = resolveElement(target);
   if (!el) return;
 
   animate(el, {

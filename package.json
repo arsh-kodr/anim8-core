@@ -5,6 +5,12 @@
   "main": "dist/anim8.umd.js",
   "module": "dist/anim8.es.js",
   "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/anim8.es.js",
+      "require": "./dist/anim8.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arsh-kodr/anim8-core.git"
+    "url": "git+https://github.com/arsh-kodr/anim8-core.git"
   },
   "homepage": "https://github.com/arsh-kodr/anim8-core#readme",
   "author": "Arsh Kodr <youremail@example.com>",

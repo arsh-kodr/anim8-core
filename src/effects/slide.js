@@ -1,21 +1,35 @@
 // src/effects/slide.js
 import { animate } from '../core/animate.js';
 import { easeOutExpo } from '../easings/easeOutExpo.js';
+import { resolveElement } from '../utils/resolveElement.js';
 
 export function slideIn(target, direction = 'left', distance = 200) {
-  const el = typeof target === "string" ? document.querySelector(target) : target;
+  const el = resolveElement(target);
   if (!el) return;
 
-  let transformProp;
-  if (direction === 'left') transformProp = ['translateX', -distance, 0];
-  else if (direction === 'right') transformProp = ['translateX', distance, 0];
-  else if (direction === 'top') transformProp = ['translateY', -distance, 0];
-  else if (direction === 'bottom') transformProp = ['translateY', distance, 0];
+  let axis, from;
 
-  const [axis, from, to] = transformProp;
+  switch (direction) {
+    case 'right':
+      axis = 'translateX';
+      from = distance;
+      break;
+    case 'top':
+      axis = 'translateY';
+      from = -distance;
+      break;
+    case 'bottom':
+      axis = 'translateY';
+      from = distance;
+      break;
+    case 'left':
+    default:
+      axis = 'translateX';
+      from = -distance;
+  }
 
   animate(el, {
-    [axis]: [from, to],
+    [axis]: [from, 0],
     opacity: [0, 1],
   }, {
     duration: 800,

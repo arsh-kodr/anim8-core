@@ -1,17 +1,63 @@
-// src/index.js
+// Effect Imports
+import { fadeIn } from "./effects/fade.js";
+import { slideIn } from "./effects/slide.js";
+import { rotate } from "./effects/rotate.js";
+import { rotateScale } from "./effects/rotateScale.js";
+import { scrollReveal } from "./effects/scrollReveal.js";
+import { typewriterPulse } from "./effects/typewriterPulse.js";
+import { gooeyNav } from "./effects/gooeyNav.js";
+import { slideOut } from "./effects/slideOut.js";
+import { depthZoom } from './effects/depthZoom.js';
+import { stagger } from './effects/stagger.js';
+import { blurIn } from './effects/blurIn.js';
+import { scrollTrigger } from "./utils/scrollTrigger.js";
 
-// Export all effects
-export { fadeIn } from "./effects/fade.js";
-export { slideIn } from "./effects/slide.js";
-export { rotate } from "./effects/rotate.js";
-export { rotateScale } from "./effects/rotateScale.js";
-export { scrollReveal } from "./effects/scrollReveal.js"; 
-export { typewriterPulse } from "./effects/typewriterPulse.js";
-export { gooeyNav } from "./effects/gooeyNav.js";
-export { slideOut } from "./effects/slideOut.js";
-export { depthZoom } from './effects/depthZoom.js';
-export { stagger } from './effects/stagger.js';
-export { blurIn } from './effects/blurIn.js';
+// ✅ Named exports (for ESM/CommonJS users)
+export {
+  fadeIn,
+  slideIn,
+  rotate,
+  rotateScale,
+  scrollReveal,
+  typewriterPulse,
+  gooeyNav,
+  slideOut,
+  depthZoom,
+  stagger,
+  blurIn,
+  scrollTrigger,
+};
 
-// ✅ Export scrollTrigger utility
-export { scrollTrigger } from "./utils/scrollTrigger.js";
+// ✅ Default export for UMD users (global `anim8` object in <script>)
+export default {
+  fadeIn,
+  slideIn,
+  rotate,
+  rotateScale,
+  scrollReveal,
+  typewriterPulse,
+  gooeyNav,
+  slideOut,
+  depthZoom,
+  stagger,
+  blurIn,
+  scrollTrigger,
+};
+
+// At the end of src/index.js
+if (typeof window !== 'undefined') {
+  window.anim8Core = {
+    fadeIn,
+    slideIn,
+    rotate,
+    rotateScale,
+    scrollReveal,
+    typewriterPulse,
+    gooeyNav,
+    slideOut,
+    depthZoom,
+    stagger,
+    blurIn,
+    scrollTrigger,
+  };
+}

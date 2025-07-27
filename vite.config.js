@@ -2,19 +2,16 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: '.',
   build: {
     lib: {
       entry: './src/index.js',
-      name: 'anim8Core', // 👈 THIS sets global var name in browser (window.anim8Core)
-      fileName: (format) => `anim8.${format}.js`, // 👈 Use consistent name for the UMD file
-      formats: ['es', 'umd'], // Can add 'cjs' later if needed
+      name: 'anim8Core',
+      fileName: (format) => `anim8.${format}.js`,
+      formats: ['es', 'umd'],
     },
     rollupOptions: {
       output: {
-        globals: {
-          // Define any external libs if used
-        },
+        exports: 'named', // 👈 ADD THIS to remove warning
       },
     },
     outDir: 'dist',

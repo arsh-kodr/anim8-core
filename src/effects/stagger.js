@@ -1,6 +1,8 @@
 // src/effects/stagger.js
-export function stagger(selector, animationFunc, options = {}) {
-  const elements = document.querySelectorAll(selector);
+import { resolveElement } from '../utils/resolveElement.js';
+
+export function stagger(target, animationFunc, options = {}) {
+  const elements = resolveElement(target, { all: true });
   if (!elements.length) return;
 
   elements.forEach((el, index) => {

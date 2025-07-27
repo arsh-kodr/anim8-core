@@ -1,8 +1,10 @@
+// src/effects/scrollReveal.js
+
+import { resolveElement } from '../utils/resolveElement.js';
+
 export const scrollReveal = (elementOrSelector, options = {}) => {
-  const elements =
-    typeof elementOrSelector === "string"
-      ? document.querySelectorAll(elementOrSelector)
-      : [elementOrSelector];
+  const elements = resolveElement(elementOrSelector, { all: true });
+  if (!elements.length) return;
 
   const observer = new IntersectionObserver((entries, observerInstance) => {
     entries.forEach((entry) => {

@@ -1,11 +1,9 @@
+// src/index.js
 
 import { animate } from "./core/animate.js";
 import { resolveElement } from "./utils/resolveElement.js";
 
-// now they get included in the UMD bundle too
-
-// Effect Imports
-
+// Effects
 import { fadeIn } from "./effects/fade.js";
 import { slideIn } from "./effects/slide.js";
 import { rotate } from "./effects/rotate.js";
@@ -14,12 +12,12 @@ import { scrollReveal } from "./effects/scrollReveal.js";
 import { typewriterPulse } from "./effects/typewriterPulse.js";
 import { gooeyNav } from "./effects/gooeyNav.js";
 import { slideOut } from "./effects/slideOut.js";
-import { depthZoom } from './effects/depthZoom.js';
-import { stagger } from './effects/stagger.js';
-import { blurIn } from './effects/blurIn.js';
+import { depthZoom } from "./effects/depthZoom.js";
+import { stagger } from "./effects/stagger.js";
+import { blurIn } from "./effects/blurIn.js";
 import { scrollTrigger } from "./utils/scrollTrigger.js";
 
-// ✅ Named exports (for ESM/CommonJS users)
+// ✅ Named exports for modern JS users
 export {
   fadeIn,
   slideIn,
@@ -33,9 +31,11 @@ export {
   stagger,
   blurIn,
   scrollTrigger,
+  animate,
+  resolveElement,
 };
 
-// ✅ Default export for UMD users (global `anim8` object in <script>)
+// ✅ Default export for UMD build (global `anim8`)
 export default {
   fadeIn,
   slideIn,
@@ -49,11 +49,13 @@ export default {
   stagger,
   blurIn,
   scrollTrigger,
+  animate,
+  resolveElement,
 };
 
-// At the end of src/index.js
-if (typeof window !== 'undefined') {
-  window.anim8Core = {
+// ✅ Attach to window for CDN usage (`<script src=".../anim8.umd.js"></script>`)
+if (typeof window !== "undefined") {
+  window.anim8 = {
     fadeIn,
     slideIn,
     rotate,
@@ -66,5 +68,7 @@ if (typeof window !== 'undefined') {
     stagger,
     blurIn,
     scrollTrigger,
+    animate,
+    resolveElement,
   };
 }

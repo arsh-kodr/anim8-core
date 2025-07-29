@@ -1,4 +1,11 @@
+
+import { animate } from "./core/animate.js";
+import { resolveElement } from "./utils/resolveElement.js";
+
+// now they get included in the UMD bundle too
+
 // Effect Imports
+
 import { fadeIn } from "./effects/fade.js";
 import { slideIn } from "./effects/slide.js";
 import { rotate } from "./effects/rotate.js";

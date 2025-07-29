@@ -5,13 +5,17 @@ export default defineConfig({
   build: {
     lib: {
       entry: './src/index.js',
-      name: 'anim8Core',
+      name: 'anim8Core', // ⬅️ Will expose as `window.anim8Core`
       fileName: (format) => `anim8.${format}.js`,
       formats: ['es', 'umd'],
     },
     rollupOptions: {
       output: {
-        exports: 'named', // 👈 ADD THIS to remove warning
+        globals: {
+          // Add any external dependencies here (if needed)
+        },
+        name: 'anim8Core',  // ⬅️ Important for UMD `window.anim8Core`
+        exports: 'named',
       },
     },
     outDir: 'dist',

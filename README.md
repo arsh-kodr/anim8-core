@@ -115,19 +115,7 @@ Most animations accept these common parameters:
 ---
 
 ```
-anim8-core/
-├── src/
-│   ├── core/           # Core animation utilities
-│   ├── easings/        # Easing function library
-│   └── effects/        # Individual animation effects
-├── tests/              # Jest unit tests
-├── dist/               # Production builds
-├── index.js            # Main entry point
-├── package.json
-├── vite.config.js      # Development server config
-├── jest.config.cjs     # Testing configuration
-└── babel.config.json   # Babel preset configuration
-```
+
 
 ---
 
@@ -173,15 +161,8 @@ myCustomEffect(element, { duration: 800 });
 | Android Browser | ✅ Latest |
 | iOS Safari      | ✅ Latest |
 
-_Uses modern APIs like `requestAnimationFrame` for optimal performance_
 
 ---
-
-## 📄 API Reference
-
-### fadeIn(element, options)
-
-Fades an element from transparent to opaque.
 
 **Parameters:**
 
@@ -190,18 +171,6 @@ Fades an element from transparent to opaque.
   - `duration` (number) - Animation duration (default: 1000ms)
   - `delay` (number) - Start delay (default: 0ms)
   - `easing` (string) - Easing function (default: 'easeOutQuad')
-
-### slideIn(element, options)
-
-Slides an element into view from a specified direction.
-
-**Parameters:**
-
-- `element` (HTMLElement) - Target element
-- `options` (Object) - Configuration options
-  - `direction` (string) - Slide direction: 'top', 'bottom', 'left', 'right'
-  - `duration` (number) - Animation duration (default: 1000ms)
-  - `distance` (string) - Slide distance (default: '100px')
 
 ---
 
